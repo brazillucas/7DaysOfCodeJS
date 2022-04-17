@@ -47,7 +47,7 @@ do {
         
         break;
 
-    } else if (resposta == 3 && (verificarLista(listaDeCompras)) > 0) {     
+    } else if (resposta == 3) {     
         
         let contador = 0;
         for([key,val] of Object.entries(listaDeCompras)) {

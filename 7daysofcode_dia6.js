@@ -47,41 +47,48 @@ do {
         
         break;
 
-    } else if (resposta == 3 && Object.keys(listaDeCompras).length > 0) {     
+    } else if (resposta == 3 && (verificarLista(listaDeCompras)) > 0) {     
         
-        console.log('------------------------------------');
-        console.log('Lista de compras atual:');
-        //imprime a lista de compras
-        let i = 0;
-
-        for([key, val] of Object.entries(listaDeCompras)) {
-            console.log(`\t${categorias[i]}: ${val.join(', ')}`);
-            i++;
+        let contador = 0;
+        for([key,val] of Object.entries(listaDeCompras)) {
+            contador += val.length;
         }
 
-        console.log('------------------------------------');
-        let item = prompt("Qual item você deseja remover? ")
-        console.log('------------------------------------');
+        if (contador > 0) {
+            console.log('------------------------------------');
+            console.log('Lista de compras atual:');
+            //imprime a lista de compras
+            let i = 0;
 
-        if (listaDeCompras.frutas.includes(item)) {
+            for([key, val] of Object.entries(listaDeCompras)) {
+                console.log(`\t${categorias[i]}: ${val.join(', ')}`);
+                i++;
+            }
 
-            listaDeCompras.frutas.splice(listaDeCompras.frutas.indexOf(item), 1);
+            console.log('------------------------------------');
+            let item = prompt("Qual item você deseja remover? ")
+            console.log('------------------------------------');
 
-        } else if (listaDeCompras.laticinios.includes(item)) {            
+            if (listaDeCompras.frutas.includes(item)) {
 
-            listaDeCompras.laticinios.splice(listaDeCompras.laticinios.indexOf(item), 1);
+                listaDeCompras.frutas.splice(listaDeCompras.frutas.indexOf(item), 1);
 
-        } else if (listaDeCompras.congelados.includes(item)) {
+            } else if (listaDeCompras.laticinios.includes(item)) {            
 
-            listaDeCompras.congelados.splice(listaDeCompras.congelados.indexOf(item), 1);
+                listaDeCompras.laticinios.splice(listaDeCompras.laticinios.indexOf(item), 1);
 
-        } else if (listaDeCompras.doces.includes(item)) {
+            } else if (listaDeCompras.congelados.includes(item)) {
 
-            listaDeCompras.doces.splice(listaDeCompras.doces.indexOf(item), 1);
+                listaDeCompras.congelados.splice(listaDeCompras.congelados.indexOf(item), 1);
 
-        } else {
-            
-            console.log('Item não encontrado!\nReiniciando...');
+            } else if (listaDeCompras.doces.includes(item)) {
+
+                listaDeCompras.doces.splice(listaDeCompras.doces.indexOf(item), 1);
+
+            } else {
+                
+                console.log('Item não encontrado!\nReiniciando...');
+            }
         }
 
     } else {
